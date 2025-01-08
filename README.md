@@ -1,1 +1,1 @@
-# Proyecto restaurant "Eat$Go"
+# Proyecto restaurant "Eat&Go"
