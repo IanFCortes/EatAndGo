@@ -1,10 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title class="ion-text-center">identificacion</ion-title>
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title color="warning" class="ion-text-center">identificación</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" [fullscreen]="true">
-  <ion-title>Bienvenido a la identifiación</ion-title>
+<ion-content color="dark" class="ion-padding">
+  <ion-title>
+    <h3>Hola!, Identificate pls</h3>
+    </ion-title>
+
+    <ion-content>
+      <form >
+        <ion-item>
+          <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required formControlName="email" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required formControlName="password" type="text"></ion-input>
+        </ion-item>
+        <ion-button block color="primary" type="submit">
+          Login
+        </ion-button>
+      </form>
+    </ion-content>
+
+  
   
 </ion-content>

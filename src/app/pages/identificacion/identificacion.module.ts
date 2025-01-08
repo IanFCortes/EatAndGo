@@ -15,6 +15,6 @@ import { IdentificacionPage } from './identificacion.page';
     IonicModule,
     IdentificacionPageRoutingModule
   ],
-  declarations: [IdentificacionPage]
+  declarations: []
 })
 export class IdentificacionPageModule {}
