@@ -1,0 +1,7 @@
+{
+  "name": "EatAndGo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
