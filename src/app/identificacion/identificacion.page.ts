@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-identificacion',
   templateUrl: './identificacion.page.html',
   styleUrls: ['./identificacion.page.scss'],
+  standalone: false
 })
 export class IdentificacionPage implements OnInit {
 
