@@ -1,0 +1,59 @@
+.rounded-input {
+    --border-radius: 12px;
+    --padding-start: 10px;
+    --padding-end: 10px;
+}
+
+ion-item {
+    --inner-padding-start: 15px;
+    --border-radius: 12px;
+}
+
+ion-button {
+    --border-radius: 20px;
+}
+
+ion-content {
+    --border-radius: 20px;
+    /* Cambia el valor para ajustar el redondeo */
+    --background: #5f5f5f28;
+    /* Fondo opcional */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Sombra opcional */
+    margin: 10px;
+    /* Añade espacio alrededor si lo deseas */
+}
+
+.number-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;  
+    /* Espaciado entre los elementos */
+}
+
+.control-button {
+    --border-radius: 50%;
+    --padding: 0;
+    width: 40px;
+    height: 40px;
+}
+
+.number-input {
+    text-align: center;
+    --padding-start: 0;
+    --padding-end: 0;
+    max-width: 80px;
+    /* Ajusta el tamaño del input */
+    flex: 1;
+    /* El input ocupa el espacio disponible */
+}
+
+.big-icon {
+    font-size: 24px; /* Ajusta este valor según el tamaño deseado */
+    margin-right: 10px; /* Opcional: espaciado para separar el icono de los demás elementos */
+  }
+
+.text-sized {
+    font-size: medium;
+}
