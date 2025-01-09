@@ -45,7 +45,7 @@ export class IdentificacionPage implements OnInit {
   onSubmit() {
     if (this.cliente.nombre && this.cliente.apellido && this.cliente.correo && this.cliente.fechayhora) {
       // Lógica adicional antes de la redirección
-      this.router.navigate(['/menu']); // Cambia '/ruta-destino' por tu ruta deseada
+      this.router.navigate(['/mesa-check']); // Cambia '/ruta-destino' por tu ruta deseada
     }
   }
 

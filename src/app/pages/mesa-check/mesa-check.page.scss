@@ -1,0 +1,23 @@
+.bordered-item {
+    border: 1px solid black; /* Borde negro */
+    border-radius: 8px; /* Esquinas redondeadas opcional */
+  }
+  
+  .bordered-input {
+    border: 1px solid black; /* Borde negro para el input */
+    border-radius: 4px; /* Esquinas redondeadas opcional */ 
+  }
+
+  .section {
+    margin-bottom: 16px; /* Separación entre secciones */
+  }
+  
+  .separator {
+    height: 2px;
+    background-color: #ccc; /* Color del separador */
+    margin: 16px 0; /* Espaciado vertical */
+  }
+
+  .agrandado {
+    font-size: larger;
+  }

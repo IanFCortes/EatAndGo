@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MesaCheckPage implements OnInit {
 
+  numeroMesa: number = 1;
+
+  
+
   constructor() { }
 
   ngOnInit() {

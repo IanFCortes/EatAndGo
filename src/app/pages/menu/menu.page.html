@@ -1,161 +1,172 @@
 <ion-header>
   <ion-toolbar>
     <ion-title color="warning" class="ion-text-center">Menú</ion-title>
+    <ion-icon class="ion-padding" slot="end" name="cart"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- Sushi Category -->
-  <ion-accordion value="sushis">
-    <ion-item slot="header" color="primary" lines="full">
-      <ion-icon name="fish-outline" slot="start"></ion-icon>
-      <ion-label>Sushi</ion-label>
-      <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
-    </ion-item>
-    <div class="ion-padding" slot="content">
-      <ion-list>
-        <!-- Sushi 1 -->
-        <ion-item>
-          <ion-card>
-            <img alt="Sushi 1" src="https://tofuu.getjusto.com/orioneat-prod/BcQe7hkX6nMXRL99H-pollo.ap.jpeg" />
-            <ion-card-header>
-              <ion-card-title>Sushi 1</ion-card-title>
-              <ion-card-subtitle>Pollo/Palta/Cebollín</ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content>
-              Disfruta de un tradicional Sushi con Pollo, palta y cebollín envuelto en panko.
-            </ion-card-content>
-            <ion-card-content>Precio: $5.000 CLP</ion-card-content>
-            <ion-button expand="block" fill="clear" shape="round">
-              Agregar a tu pedido
-            </ion-button>
-          </ion-card>
-        </ion-item>
-        <!-- Sushi 2 -->
-        <ion-item>
-          <ion-card>
-            <img alt="Sushi 2" src="https://tofuu.getjusto.com/orioneat-prod-resized/4JCrYkxwNpmCdWHZ2-500-700.webp" />
-            <ion-card-header>
-              <ion-card-title>Sushi 2</ion-card-title>
-              <ion-card-subtitle>Salmón/Queso Crema</ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content>
-              Tradicional Sushi con Salmón, Queso Crema y cobertura de Palta.
-            </ion-card-content>
-            <ion-card-content>Precio: $8.000 CLP</ion-card-content>
-            <ion-button expand="block" fill="clear" shape="round">
-              Agregar a tu pedido
-            </ion-button>
-          </ion-card>
-        </ion-item>
-      </ion-list>
-    </div>
-  </ion-accordion>
+  <ion-accordion-group #accordionComidas>
+    <!-- Sushi Category -->
+    <ion-accordion value="sushis">
+      <ion-item slot="header" color="primary" lines="full">
+        <ion-icon name="fish-outline" slot="start"></ion-icon>
+        <ion-label>Sushi</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-list>
+          <!-- Sushi 1 -->
+          <ion-item>
+            <ion-card>
+              <img alt="Sushi 1" src="https://tofuu.getjusto.com/orioneat-prod/BcQe7hkX6nMXRL99H-pollo.ap.jpeg" />
+              <ion-card-header>
+                <ion-card-title>Sushi 1</ion-card-title>
+                <ion-card-subtitle>Pollo/Palta/Cebollín</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                Disfruta de un tradicional Sushi con Pollo, palta y cebollín envuelto en panko.
+              </ion-card-content>
+              <ion-card-content>Precio: $5.000 CLP</ion-card-content>
+              <ion-button expand="block" fill="clear" shape="round">
+                Agregar a tu pedido
+              </ion-button>
+            </ion-card>
+          </ion-item>
+          <!-- Sushi 2 -->
+          <ion-item>
+            <ion-card>
+              <img alt="Sushi 2"
+                src="https://tofuu.getjusto.com/orioneat-prod-resized/4JCrYkxwNpmCdWHZ2-500-700.webp" />
+              <ion-card-header>
+                <ion-card-title>Sushi 2</ion-card-title>
+                <ion-card-subtitle>Salmón/Queso Crema</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                Tradicional Sushi con Salmón, Queso Crema y cobertura de Palta.
+              </ion-card-content>
+              <ion-card-content>Precio: $8.000 CLP</ion-card-content>
+              <ion-button expand="block" fill="clear" shape="round">
+                Agregar a tu pedido
+              </ion-button>
+            </ion-card>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-accordion>
 
-  <!-- Completos Category -->
-  <ion-accordion value="completos">
-    <ion-item slot="header" color="secondary" lines="full">
-      <img src="https://th.bing.com/th/id/OIP.UE4JJNK2GedFWm12-Rtq9AHaHa?rs=1&pid=ImgDetMain" alt="Hot-dog" slot="start" style="width: 24px; height: 24px; object-fit: cover;" />
-      <ion-label>Completos</ion-label>
-      <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
-    </ion-item>
-    <div class="ion-padding" slot="content">
-      <ion-list>
-        <!-- Completo 1 -->
-        <ion-item>
-          <ion-card>
-            <img alt="Completo Italiano" src="https://tofuu.getjusto.com/orioneat-prod/bnCDw7EXN4iGBxE6E-hotdog.jpg" />
-            <ion-card-header>
-              <ion-card-title>Completo Italiano</ion-card-title>
-              <ion-card-subtitle>Palta/Tomate/Mayo</ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content>
-              Un clásico chileno con abundante palta, tomate fresco y mayonesa.
-            </ion-card-content>
-            <ion-card-content>Precio: $3.000 CLP</ion-card-content>
-            <ion-button expand="block" fill="clear" shape="round">
-              Agregar a tu pedido
-            </ion-button>
-          </ion-card>
-        </ion-item>
-        <!-- Completo 2 -->
-        <ion-item>
-          <ion-card>
-            <img alt="Completo Dinámico" src="https://tofuu.getjusto.com/orioneat-prod/zcQw7hkX5o3EXhVEJ-completo.jpg" />
-            <ion-card-header>
-              <ion-card-title>Completo Dinámico</ion-card-title>
-              <ion-card-subtitle>Repollo/Mayo/Salsa Verde</ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content>
-              Completo chileno con repollo picado, salsa verde y mayonesa casera.
-            </ion-card-content>
-            <ion-card-content>Precio: $3.500 CLP</ion-card-content>
-            <ion-button expand="block" fill="clear" shape="round">
-              Agregar a tu pedido
-            </ion-button>
-          </ion-card>
-        </ion-item>
-      </ion-list>
-    </div>
-  </ion-accordion>
+    <!-- Completos Category -->
+    <ion-accordion value="completos">
+      <ion-item slot="header" color="secondary" lines="full">
+        <img src="https://th.bing.com/th/id/OIP.UE4JJNK2GedFWm12-Rtq9AHaHa?rs=1&pid=ImgDetMain" alt="Hot-dog"
+          slot="start" style="width: 24px; height: 24px; object-fit: cover;" />
+        <ion-label>Completos</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-list>
+          <!-- Completo 1 -->
+          <ion-item>
+            <ion-card>
+              <img alt="Completo Italiano"
+                src="https://cl.o-liveandco.com/blogs/recetas/celebrando-el-dia-del-completo-con-recetas-unicas" />
+              <ion-card-header>
+                <ion-card-title>Completo Italiano</ion-card-title>
+                <ion-card-subtitle>Palta/Tomate/Mayo</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                Un clásico chileno con abundante palta, tomate fresco y mayonesa.
+              </ion-card-content>
+              <ion-card-content>Precio: $3.000 CLP</ion-card-content>
+              <ion-button expand="block" fill="clear" shape="round">
+                Agregar a tu pedido
+              </ion-button>
+            </ion-card>
+          </ion-item>
+          <!-- Completo 2 -->
+          <ion-item>
+            <ion-card>
+              <img alt="Completo Dinámico"
+                src="https://tofuu.getjusto.com/orioneat-prod/zcQw7hkX5o3EXhVEJ-completo.jpg" />
+              <ion-card-header>
+                <ion-card-title>Completo Dinámico</ion-card-title>
+                <ion-card-subtitle>Repollo/Mayo/Salsa Verde</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                Completo chileno con repollo picado, salsa verde y mayonesa casera.
+              </ion-card-content>
+              <ion-card-content>Precio: $3.500 CLP</ion-card-content>
+              <ion-button expand="block" fill="clear" shape="round">
+                Agregar a tu pedido
+              </ion-button>
+            </ion-card>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-accordion>
 
-  <!-- Hamburguesas Category -->
-  <ion-accordion value="hamburguesas">
-    <ion-item slot="header" color="tertiary" lines="full">
-      <ion-icon name="fast-food-outline" slot="start"></ion-icon>
-      <ion-label>Hamburguesas</ion-label>
-      <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
-    </ion-item>
-    <div class="ion-padding" slot="content">
-      <ion-list>
-        <!-- Hamburguesa 1 -->
-        <ion-item>
-          <ion-card>
-            <img alt="Hamburguesa Clásica" src="https://tofuu.getjusto.com/orioneat-prod/2smQw7hkX90MEXE6D-burger.jpg" />
-            <ion-card-header>
-              <ion-card-title>Hamburguesa Clásica</ion-card-title>
-              <ion-card-subtitle>Queso/Tomate/Lechuga</ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content>
-              Una hamburguesa clásica con queso derretido, lechuga crujiente y tomate fresco.
-            </ion-card-content>
-            <ion-card-content>Precio: $4.500 CLP</ion-card-content>
-            <ion-button expand="block" fill="clear" shape="round">
-              Agregar a tu pedido
-            </ion-button>
-          </ion-card>
-        </ion-item>
-      </ion-list>
-    </div>
-  </ion-accordion>
+    <!-- Hamburguesas Category -->
+    <ion-accordion value="hamburguesas">
+      <ion-item slot="header" color="tertiary" lines="full">
+        <ion-icon name="fast-food-outline" slot="start"></ion-icon>
+        <ion-label>Hamburguesas</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-list>
+          <!-- Hamburguesa 1 -->
+          <ion-item>
+            <ion-card>
+              <img alt="Hamburguesa Clásica"
+                src="https://tofuu.getjusto.com/orioneat-prod/2smQw7hkX90MEXE6D-burger.jpg" />
+              <ion-card-header>
+                <ion-card-title>Hamburguesa Clásica</ion-card-title>
+                <ion-card-subtitle>Queso/Tomate/Lechuga</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                Una hamburguesa clásica con queso derretido, lechuga crujiente y tomate fresco.
+              </ion-card-content>
+              <ion-card-content>Precio: $4.500 CLP</ion-card-content>
+              <ion-button expand="block" fill="clear" shape="round">
+                Agregar a tu pedido
+              </ion-button>
+            </ion-card>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-accordion>
 
-  <!-- Papas Fritas Category -->
-  <ion-accordion value="papas-fritas">
-    <ion-item slot="header" color="success" lines="full">
-      <ion-icon name="basket-outline" slot="start"></ion-icon>
-      <ion-label>Papas Fritas</ion-label>
-      <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
-    </ion-item>
-    <div class="ion-padding" slot="content">
-      <ion-list>
-        <!-- Papas Fritas 1 -->
-        <ion-item>
-          <ion-card>
-            <img alt="Papas Fritas Clásicas" src="https://tofuu.getjusto.com/orioneat-prod/5lRQw7hkX0p6BXME6F-fries.jpg" />
-            <ion-card-header>
-              <ion-card-title>Papas Clásicas</ion-card-title>
-              <ion-card-subtitle>Crocantes y deliciosas</ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content>
-              Papas fritas doradas y crocantes, perfectas para acompañar cualquier comida.
-            </ion-card-content>
-            <ion-card-content>Precio: $2.500 CLP</ion-card-content>
-            <ion-button expand="block" fill="clear" shape="round">
-              Agregar a tu pedido
-            </ion-button>
-          </ion-card>
-        </ion-item>
-      </ion-list>
-    </div>
-  </ion-accordion>
+    <!-- Papas Fritas Category -->
+    <ion-accordion value="papas-fritas">
+      <ion-item slot="header" color="success" lines="full">
+        <ion-icon name="basket-outline" slot="start"></ion-icon>
+        <ion-label>Papas Fritas</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-list>
+          <!-- Papas Fritas 1 -->
+          <ion-item>
+            <ion-card>
+              <img alt="Papas Fritas Clásicas"
+                src="https://tofuu.getjusto.com/orioneat-prod/5lRQw7hkX0p6BXME6F-fries.jpg" />
+              <ion-card-header>
+                <ion-card-title>Papas Clásicas</ion-card-title>
+                <ion-card-subtitle>Crocantes y deliciosas</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                Papas fritas doradas y crocantes, perfectas para acompañar cualquier comida.
+              </ion-card-content>
+              <ion-card-content>Precio: $2.500 CLP</ion-card-content>
+              <ion-button expand="block" fill="clear" shape="round">
+                Agregar a tu pedido
+              </ion-button>
+            </ion-card>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+  <ion-button expand="block" shape="round" color="primary" type="submit" class="ion-margin-top" onclick="">
+    Ver mi pedido
+  </ion-button>
+  <ion-button expand="block" shape="round" color="primary" type="submit" class="ion-margin-top" (click)="confirmarPedido()">
+    Confirmar mi pedido
+  </ion-button>
 </ion-content>
