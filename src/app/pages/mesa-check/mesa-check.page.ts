@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-mesa-check',
@@ -13,7 +14,9 @@ export class MesaCheckPage implements OnInit {
 
   
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private fb: FormBuilder) {}
+
+  
 
   ngOnInit() {
   }
