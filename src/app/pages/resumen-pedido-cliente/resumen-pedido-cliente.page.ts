@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-resumen-pedido-cliente',
@@ -8,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResumenPedidoClientePage implements OnInit {
 
-  constructor() { }
+ constructor(
+     private router: Router,
+     private alertController: AlertController // Inyectamos AlertController aquí
+   ) {}
 
   ngOnInit() {
   }
 
+  async pedidoPagado() {
+    const alert = await this.alertController.create({
+      header: 'Has Pagado tu Pedido',
+      subHeader: '¡Gracias por tu compra!',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+    
+    this.router.navigate(['/historial-pedidos-cliente']);
+  }
 }

@@ -21,4 +21,12 @@ export class MenuPage implements OnInit {
     this.router.navigate(['/resumen-pedido-cliente']);
   }
 
+  paginaAnterior() {
+    this.router.navigate(['/..']);
+  }
+
+  verPedido() {
+    this.router.navigate(['/pedido-cliente']);
+  }
+
 }

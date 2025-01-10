@@ -24,10 +24,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pedido-cliente/pedido-cliente.module').then( m => m.PedidoClientePageModule)
   },
   {
-    path: 'resumen-pedido',
-    loadChildren: () => import('./pages/resumen-pedido/resumen-pedido.module').then( m => m.ResumenPedidoPageModule)
-  },
-  {
     path: 'resumen-pedido-cliente',
     loadChildren: () => import('./pages/resumen-pedido-cliente/resumen-pedido-cliente.module').then( m => m.ResumenPedidoClientePageModule)
   },

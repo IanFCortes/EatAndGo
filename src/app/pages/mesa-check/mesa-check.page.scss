@@ -21,3 +21,16 @@
   .agrandado {
     font-size: larger;
   }
+
+  ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el contenido con espacio entre ellos */
+  }
+  
+  ion-footer {
+    position: fixed; /* Fija el footer */
+    bottom: 0;
+    width: 100%;
+  }
+  

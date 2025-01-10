@@ -1,7 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-icon class="ion-padding" name="arrow-back-outline" slot="start" (click)=paginaAnterior();></ion-icon>
     <ion-title color="warning" class="ion-text-center">Menú</ion-title>
-    <ion-icon class="ion-padding" slot="end" name="cart"></ion-icon>
+    <ion-icon class="ion-padding" slot="end" name="cart" (click)="verPedido()"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +10,7 @@
   <ion-accordion-group #accordionComidas>
     <!-- Sushi Category -->
     <ion-accordion value="sushis">
-      <ion-item slot="header" color="primary" lines="full">
+      <ion-item slot="header" color="warning" lines="full">
         <ion-icon name="fish-outline" slot="start"></ion-icon>
         <ion-label>Sushi</ion-label>
       </ion-item>
@@ -56,7 +57,7 @@
 
     <!-- Completos Category -->
     <ion-accordion value="completos">
-      <ion-item slot="header" color="secondary" lines="full">
+      <ion-item slot="header" color="warning" lines="full">
         <img src="https://th.bing.com/th/id/OIP.UE4JJNK2GedFWm12-Rtq9AHaHa?rs=1&pid=ImgDetMain" alt="Hot-dog"
           slot="start" style="width: 24px; height: 24px; object-fit: cover;" />
         <ion-label>Completos</ion-label>
@@ -105,7 +106,7 @@
 
     <!-- Hamburguesas Category -->
     <ion-accordion value="hamburguesas">
-      <ion-item slot="header" color="tertiary" lines="full">
+      <ion-item slot="header" color="warning" lines="full">
         <ion-icon name="fast-food-outline" slot="start"></ion-icon>
         <ion-label>Hamburguesas</ion-label>
       </ion-item>
@@ -135,7 +136,7 @@
 
     <!-- Papas Fritas Category -->
     <ion-accordion value="papas-fritas">
-      <ion-item slot="header" color="success" lines="full">
+      <ion-item slot="header" color="warning" lines="full">
         <ion-icon name="basket-outline" slot="start"></ion-icon>
         <ion-label>Papas Fritas</ion-label>
       </ion-item>
@@ -163,10 +164,7 @@
       </div>
     </ion-accordion>
   </ion-accordion-group>
-  <ion-button expand="block" shape="round" color="primary" type="submit" class="ion-margin-top" onclick="">
+  <ion-button expand="block" shape="round" color="warning" type="submit" class="ion-margin-top" (click)="verPedido()">
     Ver mi pedido
-  </ion-button>
-  <ion-button expand="block" shape="round" color="primary" type="submit" class="ion-margin-top" (click)="confirmarPedido()">
-    Confirmar mi pedido
   </ion-button>
 </ion-content>

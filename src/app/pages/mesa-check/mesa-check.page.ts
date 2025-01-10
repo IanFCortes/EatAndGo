@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mesa-check',
@@ -12,9 +13,17 @@ export class MesaCheckPage implements OnInit {
 
   
 
-  constructor() { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
+  }
+
+  confirmarMesa() {
+    this.router.navigate(['/menu']);
+  }
+
+  paginaAnterior() {
+    this.router.navigate(['/..']);
   }
 
 }

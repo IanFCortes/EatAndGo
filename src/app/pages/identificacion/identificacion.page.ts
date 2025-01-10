@@ -16,6 +16,7 @@ export class IdentificacionPage implements OnInit {
   cliente = {
     nombre: '',
     apellido: '',
+    rutcliente: '',
     correo: '',
     fechayhora: '',
   }
