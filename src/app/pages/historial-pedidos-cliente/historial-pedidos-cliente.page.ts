@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-historial-pedidos-cliente',
   templateUrl: './historial-pedidos-cliente.page.html',
@@ -21,11 +22,13 @@ export class HistorialPedidosClientePage implements OnInit {
   }
 
   verDetalles() {
-    this.router.navigate(['/resumen-pedido-cliente']);
+    this.router.navigate(['/resumen-cliente']);
   }
 
   irMenu() {
     this.router.navigate(['/menu']);
   }
+
+
 
 }
