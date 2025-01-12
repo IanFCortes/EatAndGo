@@ -15,6 +15,6 @@ import { MesaCheckPage } from './mesa-check.page';
     IonicModule,
     MesaCheckPageRoutingModule
   ],
-  declarations: [MesaCheckPage]
+  declarations: []
 })
 export class MesaCheckPageModule {}
