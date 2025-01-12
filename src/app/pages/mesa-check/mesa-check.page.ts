@@ -13,12 +13,13 @@ import { IonicModule } from '@ionic/angular';
 export class MesaCheckPage implements OnInit {
 
   numeroMesa: number = 1;
+  mesaCheckForm: any;
 
-  mesaCheckForm!: FormGroup;
+  
 
-  constructor(private router: Router, private fb: FormBuilder) { }
+  constructor(private router: Router,private fb: FormBuilder) {}
 
-
+  
 
   ngOnInit() {
     this.mesaCheckForm = this.fb.group({
