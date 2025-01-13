@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title color="warning" class="ion-text-center">Bienvenido/a</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding" color="dark">
+  <h1 class="ion-text-center">¡Bienvenido a Eat&Go!</h1>
+  <div class="welcome-container ion-text-center">
+    <br>
+    <br>
+    <br>
+    <h1>
+      <ion-input type="text" placeholder="Rut">Ingresa tu Rut</ion-input>
+      <ion-input type="text" placeholder="Correo">Ingresa tu correo</ion-input>
+    </h1>
+
+    <div class="ion-padding">
+      <ion-button expand="block" shape="round" color="warning" (click)="toMenu()">
+        Login
+      </ion-button>
+      <br><ion-button expand="block" shape="round" color="warning" (click)="toIdentificacion()">
+        Registrate
+      </ion-button>
+      <br>
+      <ion-button expand="block" color="danger" shape="round" (click)="toAdmin()">
+        Administrador
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

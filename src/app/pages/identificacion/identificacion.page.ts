@@ -57,5 +57,8 @@ export class IdentificacionPage implements OnInit {
     });
   }
 
+  toHome() {
+    this.router.navigate(['/bienvenida'])
+  }
 
 }

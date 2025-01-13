@@ -29,6 +29,8 @@ export class HistorialPedidosClientePage implements OnInit {
     this.router.navigate(['/menu']);
   }
 
-
+ toBienvenida() {
+  this.router.navigate(['/bienvenida'])
+ }
 
 }

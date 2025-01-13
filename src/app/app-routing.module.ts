@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'identificacion',
+    redirectTo: 'bienvenida',
     pathMatch: 'full'
   },
   {
@@ -30,9 +30,18 @@ const routes: Routes = [
   {
     path: 'historial-pedidos-cliente',
     loadChildren: () => import('./pages/historial-pedidos-cliente/historial-pedidos-cliente.module').then( m => m.HistorialPedidosClientePageModule)
-  },  {
+  },
+  {
     path: 'resumen-cliente',
     loadChildren: () => import('./pages/resumen-cliente/resumen-cliente.module').then( m => m.ResumenClientePageModule)
+  },
+  {
+    path: 'administrador',
+    loadChildren: () => import('./pages/administrador/administrador.module').then( m => m.AdministradorPageModule)
+  },
+  {
+    path: 'bienvenida',
+    loadChildren: () => import('./pages/bienvenida/bienvenida.module').then( m => m.BienvenidaPageModule)
   },
 
 
