@@ -15,7 +15,7 @@ export class AdministradorPage implements OnInit {
   }
 
   paginaAnterior() {
-    this.router.navigate(['/bienvenida']);
+    this.router.navigate(['/..']);
   }
 
 }

@@ -15,16 +15,18 @@
         <!-- Nombre -->
         <ion-item lines="full">
           <ion-icon name="person-outline" slot="start"></ion-icon>
-          <ion-input label="Nombre" labelPlacement="floating" required type="text" name="nombre"
-            [(ngModel)]="cliente.nombre" class="rounded-input">
+          <ion-input label="Nombre" labelPlacement="floating" required 
+          minlength="3" type="text" name="nombre"
+            [(ngModel)]="nuevoUsuario.nombre" #nombre="ngModel" class="rounded-input">
           </ion-input>
         </ion-item>
+        
 
         <!-- Apellido -->
         <ion-item lines="full" class="ion-margin-top">
           <ion-icon name="person-outline" slot="start"></ion-icon>
           <ion-input label="Apellido" labelPlacement="floating" required type="text" name="apellido"
-            [(ngModel)]="cliente.apellido" class="rounded-input">
+            [(ngModel)]="nuevoUsuario.apellido" class="rounded-input">
           </ion-input>
         </ion-item>
 
@@ -32,7 +34,7 @@
         <ion-item lines="full" class="ion-margin-top">
           <ion-icon name="body-outline" slot="start"></ion-icon>
           <ion-input label="Rut" labelPlacement="floating" placeholder="12345678-9" required type="text" name="rut"
-            [(ngModel)]="cliente.rutcliente" class="rounded-input">
+            [(ngModel)]="nuevoUsuario.rut" class="rounded-input">
           </ion-input>
         </ion-item>
 
@@ -40,7 +42,7 @@
         <ion-item lines="full" class="ion-margin-top">
           <ion-icon name="mail-outline" slot="start"></ion-icon>
           <ion-input label="Correo" labelPlacement="floating" required type="correo" name="correo"
-            [(ngModel)]="cliente.correo" class="rounded-input">
+            [(ngModel)]="nuevoUsuario.correo" class="rounded-input">
           </ion-input>
         </ion-item>
 
@@ -64,14 +66,17 @@
             </ion-button>
           </div>
         </ion-item>
-
+        <br>  
         <!-- Fecha y Hora del Evento -->
-        <ion-item lines="full" class="ion-margin-top">
-          <ion-icon name="calendar-outline" slot="start"></ion-icon>
-          <ion-datetime label="Fecha y Hora del Evento" labelPlacement="floating" color="warning" [(ngModel)]="cliente.fechayhora"
-            name="FechayHora" required>
-          </ion-datetime>
-        </ion-item>
+         <ion-item disabled>
+          <ion-datetime-button datetime="datetime"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime id="datetime"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+         </ion-item>
+       
 
         <!-- Botón de confirmación -->
         <ion-button expand="block" shape="round" color="warning" type="submit" [disabled]="identificacionForm.invalid"

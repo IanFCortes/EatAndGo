@@ -29,12 +29,16 @@
     <h1>Detalles de la mesa</h1>
   </ion-text>
   <div>
-    <ion-text color="dark">
-      <h4>Rut del cliente: </h4>
-      <h4>Correo del cliente: </h4>
-      <h4>Cantidad de personas: </h4>
-      <h4>Fecha y Hora de la reserva: </h4>
-    </ion-text>
+    <ion-list>
+      <!-- Iterar sobre el arreglo de usuarios -->
+      <ion-item *ngFor="let usuario of usuarios">
+        <ion-label>
+          <h2>{{ usuario.nombre }} {{ usuario.apellido }}</h2>
+          <p>RUT: {{ usuario.rut }}</p>
+          <p>Correo: {{ usuario.correo }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
   </div>
   <ion-button expand="block" shape="round" color="warning" class="ion-padding" (click)=confirmarMesa()>
     Confirmar mesa

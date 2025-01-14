@@ -22,7 +22,7 @@ export class MenuPage implements OnInit {
   }
 
   paginaAnterior() {
-    this.router.navigate(['/identificacion']);
+    this.router.navigate(['/..']);
   }
 
   verPedido() {
