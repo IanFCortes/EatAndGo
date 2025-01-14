@@ -68,6 +68,7 @@
         </ion-item>
         <br>  
         <!-- Fecha y Hora del Evento -->
+         <div class="ion-padding">
          <ion-item disabled>
           <ion-datetime-button datetime="datetime"></ion-datetime-button>
           <ion-modal [keepContentsMounted]="true">
@@ -76,7 +77,7 @@
             </ng-template>
           </ion-modal>
          </ion-item>
-       
+        </div>
 
         <!-- Botón de confirmación -->
         <ion-button expand="block" shape="round" color="warning" type="submit" [disabled]="identificacionForm.invalid"

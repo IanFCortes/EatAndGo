@@ -31,6 +31,9 @@ export class IdentificacionPage implements OnInit {
     correo: '',
   };
 
+  eventoFecha: string = ''; // Asignar valor inicial
+
+
   constructor(private router: Router, private fb: FormBuilder,private usuarioService: UsuarioService) { 
 
     this.form = this.fb.group({
