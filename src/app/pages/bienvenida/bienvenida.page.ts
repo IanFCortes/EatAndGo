@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-bienvenida',
@@ -8,6 +9,8 @@ import { Router } from '@angular/router';
   standalone: false
 })
 export class BienvenidaPage implements OnInit {
+
+  
 
   constructor(private router: Router) { }
 
@@ -25,4 +28,10 @@ export class BienvenidaPage implements OnInit {
   toAdmin() {
     this.router.navigate(['/administrador'])
   }
+
+  comprobarUser () {
+    
+  }
+
+  
 }
