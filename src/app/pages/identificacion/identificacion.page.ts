@@ -1,9 +1,7 @@
-import { Usuario } from '../../interfaces/usuario';
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { FormBuilder, FormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsuarioService } from './../../services/usuario.service';
 
 
 
@@ -20,51 +18,61 @@ export class IdentificacionPage implements OnInit {
 
   ngOnInit() {
   }
-  
 
-  cantidad: number = 1; // Valor inicial
 
-  nuevoUsuario: Usuario = {
+  cantidad: number = 1;
+
+  nuevoUsuario = {
     nombre: '',
     apellido: '',
     rut: '',
-    correo: '',
-  };
+    correo: ''
+  }
 
-  eventoFecha: string = ''; // Asignar valor inicial
+  nuevaMesa = {
+    personasCantidad: 0,
+    fechayhora: Date,
+  }
+
+  eventoFecha: string = '';
 
 
-  constructor(private router: Router, private fb: FormBuilder,private usuarioService: UsuarioService) { 
+  constructor(private router: Router, private fb: FormBuilder) {
 
     this.form = this.fb.group({
-    nombre: ['', Validators.required],
-    apellido: ['', Validators.required],
-    rut: ['', Validators.required],
-    correo: ['', [Validators.required, Validators.email]],
-  }); }
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      rut: ['', Validators.required],
+      correo: ['', [Validators.required, Validators.email]],
+    });
+  }
 
-  clientes: Usuario[] = []; // Arreglo para almacenar usuarios
+
 
   onSubmit() {
-    if (this.nuevoUsuario.nombre && this.nuevoUsuario.apellido && this.nuevoUsuario.rut && this.nuevoUsuario.correo) {
-      this.usuarioService.guardarUsuario(this.nuevoUsuario); // Guardar datos en el servicio
-      this.router.navigate(['/mesa-check']); // Navegar a la página donde se muestran
-    } else {
-      console.error('Formulario no válido.');
+    if (this.nuevoUsuario.nombre && this.nuevoUsuario.apellido && this.nuevoUsuario.correo && this.nuevoUsuario.rut) {
+
+      localStorage.setItem('reserva', JSON.stringify(this.nuevoUsuario));
+      this.router.navigate(['/mesa-check']); 
+    }else
+
+      this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+
+    });
+  }
+
+  toHome() {
+    this.router.navigate(['/bienvenida'])
+  }
+
+  increment() {
+    this.cantidad++;
+  }
+
+  decrement() {
+    if (this.cantidad > 1) {
+      this.cantidad--;
     }
   }
-
-toHome() {
-  this.router.navigate(['/bienvenida'])
-}
-
-increment() {
-  this.cantidad++;
-}
-
-decrement() {
-  if (this.cantidad > 1) {
-    this.cantidad--;
-  }
-}
 }

@@ -19,7 +19,7 @@
       <ion-col size="2"></ion-col>
       <ion-col size="6">
         <ion-text class="ion-padding">Datos del Ocupante</ion-text>
-        <ion-input type="text" class="ion-text-center bordered-item" [value]="nombreOcupante">
+        <ion-input disabled type="text" class="ion-text-center bordered-item" [value]="nuevoUsuario.nombre">
         </ion-input>
       </ion-col>
     </ion-row>
@@ -29,17 +29,13 @@
     <h1>Detalles de la mesa</h1>
   </ion-text>
 
-  <div>
-    <ion-list>
-      <!-- Iterar sobre el arreglo de usuarios -->
-      <ion-item *ngFor="let usuario of usuarios">
-        <ion-label>
-          <h2>{{ usuario.nombre }} {{ usuario.apellido }}</h2>
-          <p>RUT: {{ usuario.rut }}</p>
-          <p>Correo: {{ usuario.correo }}</p>
-        </ion-label>
-      </ion-item>
-    </ion-list>
+  <div class="ion-padding" *ngIf="nuevoUsuario">
+    <ion-text color="dark">
+      <h4><strong>Rut: </strong>{{ nuevoUsuario.rut }}</h4>
+      <h4><strong>Correo: </strong>{{ nuevoUsuario.correo }}</h4>
+      <h4><strong>Cantidad de personas: </strong></h4>
+      <h4><strong>Fecha y hora: </strong></h4>
+    </ion-text>
   </div>
 
   <ion-button expand="block" shape="round" color="warning" class="ion-padding" (click)="confirmarMesa()">
