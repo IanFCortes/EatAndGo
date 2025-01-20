@@ -8,7 +8,7 @@
 <ion-content class="ion-padding" fullscreen>
   <ion-grid fixed class="bordered-item">
     <ion-row>
-      <ion-col size="4">
+      <ion-col size="5">
         <ion-text class="ion-padding agrandado">Mesa N°</ion-text>
         <ion-item lines="none" class="ion-text-center bordered-item">
           <ion-label position="stacked" class="ion-text-center"></ion-label>
@@ -16,10 +16,10 @@
           </ion-input>
         </ion-item>
       </ion-col>
-      <ion-col size="2"></ion-col>
+      <ion-col size="1"></ion-col>
       <ion-col size="6">
-        <ion-text class="ion-padding">Datos del Ocupante</ion-text>
-        <ion-input disabled type="text" class="ion-text-center bordered-item" [value]="nuevoUsuario.nombre">
+        <ion-text class="ion-padding">Ocupante</ion-text>
+        <ion-input type="text" class="ion-text-center bordered-item" [readonly]="true" [value]="nuevoUsuario.nombre">
         </ion-input>
       </ion-col>
     </ion-row>
@@ -33,8 +33,8 @@
     <ion-text color="dark">
       <h4><strong>Rut: </strong>{{ nuevoUsuario.rut }}</h4>
       <h4><strong>Correo: </strong>{{ nuevoUsuario.correo }}</h4>
-      <h4><strong>Cantidad de personas: </strong></h4>
-      <h4><strong>Fecha y hora: </strong></h4>
+      <h4><strong>Cantidad de personas: </strong> {{ nuevoUsuario.cantidadpersonas }}</h4>
+      <h4><strong>Fecha y hora: </strong>{{ nuevoUsuario.fechayhora }} </h4>
     </ion-text>
   </div>
 

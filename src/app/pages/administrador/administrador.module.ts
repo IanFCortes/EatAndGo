@@ -15,6 +15,6 @@ import { AdministradorPage } from './administrador.page';
     IonicModule,
     AdministradorPageRoutingModule
   ],
-  declarations: [AdministradorPage]
+  declarations: []
 })
 export class AdministradorPageModule {}

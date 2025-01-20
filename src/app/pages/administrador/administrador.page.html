@@ -7,37 +7,23 @@
 
 
 <ion-content class="ion-padding" color="dark">
-  <ion-segment value="usuarios">
+  <ion-title class="ion-text-center">Administrar</ion-title>
+  <ion-segment [(ngModel)]="valorsegmento">
     <ion-segment-button value="usuarios">
-      <ion-label color="warning">Usuarios</ion-label>
+      <ion-label>Usuarios</ion-label>
     </ion-segment-button>
     <ion-segment-button value="productos">
-      <ion-label color="warning">Productos</ion-label>
+      <ion-label>Productos</ion-label>
     </ion-segment-button>
   </ion-segment>
-
-  <ng-container>
-    <ion-list>
-      <ion-item color="dark">
-        <ion-label color="warning">
-          <h2>nombre</h2>
-          <p>email</p>
-        </ion-label>
-        <ion-button color="danger">Eliminar</ion-button>
-      </ion-item>
-    </ion-list>
+  
+  <ng-container *ngIf="valorsegmento === 'usuarios'">
+    <p>Aquí se muestran los usuarios disponibles.</p>
   </ng-container>
-
-
-  <ng-container>
-    <ion-list>
-      <ion-item color="dark">
-        <ion-label color="warning">
-          <p>Precio: </p>
-          <p>Stock: </p>
-        </ion-label>
-        <ion-button color="danger">Eliminar</ion-button>
-      </ion-item>
-    </ion-list>
+  
+  <ng-container *ngIf="valorsegmento === 'productos'">
+    <p>Aquí se muestra los productos disponibles.</p>
   </ng-container>
+  
+
 </ion-content>

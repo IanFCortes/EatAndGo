@@ -41,14 +41,14 @@
         <!-- Correo -->
         <ion-item lines="full" class="ion-margin-top">
           <ion-icon name="mail-outline" slot="start"></ion-icon>
-          <ion-input label="Correo" labelPlacement="floating" required type="correo" name="correo"
+          <ion-input label="Correo" labelPlacement="floating" required type="email" name="correo"
             [(ngModel)]="nuevoUsuario.correo" class="rounded-input">
           </ion-input>
         </ion-item>
 
         <!-- Cantida de personas -->
         <ion-item lines="full" class="ion-margin-top">
-          <ion-label class="ion-text-center text-sized" position="stacked">Cantidad de personas</ion-label>
+          <ion-label class="ion-text-center text-sized" name="cantidadpersonas" position="stacked">Cantidad de personas</ion-label>
           <div class="number-control">
             <ion-icon class="big-icon" name="person-add-outline"></ion-icon>
             <!-- Botón de Decrementar -->
@@ -57,7 +57,7 @@
             </ion-button>
 
             <!-- Campo numérico -->
-            <ion-input type="number" min="1" [(ngModel)]="cantidad" name="cantidad" required class="number-input">
+            <ion-input type="number" min="1" [(ngModel)]="nuevoUsuario.cantidadpersonas" name="cantidadpersonas" required class="number-input">
             </ion-input>
 
             <!-- Botón de Incrementar -->
@@ -68,16 +68,16 @@
         </ion-item>
         <br>  
         <!-- Fecha y Hora del Evento -->
-         <div class="ion-padding">
-         <ion-item disabled>
+         <!-- <div class="ion-padding">
+         <ion-item disabled >
           <ion-datetime-button datetime="datetime"></ion-datetime-button>
-          <ion-modal [keepContentsMounted]="true">
-            <ng-template>
+          <ion-modal [keepContentsMounted]="true" >
+            <ng-template name="fechayhora" [(ngModel)]="nuevoUsuario.fechayhora">
               <ion-datetime id="datetime"></ion-datetime>
             </ng-template>
           </ion-modal>
          </ion-item>
-        </div>
+        </div> -->
 
         <!-- Botón de confirmación -->
         <ion-button expand="block" shape="round" color="warning" type="submit" [disabled]="identificacionForm.invalid"

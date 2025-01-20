@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { FormBuilder, FormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IonicStorageModule } from '@ionic/storage-angular';
+
 
 
 
@@ -26,11 +28,9 @@ export class IdentificacionPage implements OnInit {
     nombre: '',
     apellido: '',
     rut: '',
-    correo: ''
-  }
-
-  nuevaMesa = {
-    personasCantidad: 0,
+    correo: '',
+    numeromesa: 0,
+    cantidadpersonas: 0,
     fechayhora: Date,
   }
 
@@ -44,6 +44,10 @@ export class IdentificacionPage implements OnInit {
       apellido: ['', Validators.required],
       rut: ['', Validators.required],
       correo: ['', [Validators.required, Validators.email]],
+      numeromesa: ['', Validators.required],
+      cantidadpersonas: ['', Validators.required],
+
+      //fechayhora: ['', Validators.required]
     });
   }
 
@@ -52,7 +56,7 @@ export class IdentificacionPage implements OnInit {
   onSubmit() {
     if (this.nuevoUsuario.nombre && this.nuevoUsuario.apellido && this.nuevoUsuario.correo && this.nuevoUsuario.rut) {
 
-      localStorage.setItem('reserva', JSON.stringify(this.nuevoUsuario));
+      IonicStorageModule.setItem('reserva', JSON.stringify(this.nuevoUsuario));
       this.router.navigate(['/mesa-check']); 
     }else
 
@@ -67,12 +71,12 @@ export class IdentificacionPage implements OnInit {
   }
 
   increment() {
-    this.cantidad++;
+    this.nuevoUsuario.cantidadpersonas++;
   }
 
   decrement() {
-    if (this.cantidad > 1) {
-      this.cantidad--;
+    if (this.nuevoUsuario.cantidadpersonas > 1) {
+      this.nuevoUsuario.cantidadpersonas--;
     }
   }
 }
