@@ -19,7 +19,7 @@
       <ion-col size="1"></ion-col>
       <ion-col size="6">
         <ion-text class="ion-padding">Ocupante</ion-text>
-        <ion-input type="text" class="ion-text-center bordered-item" [readonly]="true" [value]="nuevoUsuario.nombre">
+        <ion-input type="text" class="ion-text-center bordered-item" [readonly]="true" [value]="usuario.nombre">
         </ion-input>
       </ion-col>
     </ion-row>
@@ -29,12 +29,12 @@
     <h1>Detalles de la mesa</h1>
   </ion-text>
 
-  <div class="ion-padding" *ngIf="nuevoUsuario">
+  <div class="ion-padding" *ngIf="usuario">
     <ion-text color="dark">
-      <h4><strong>Rut: </strong>{{ nuevoUsuario.rut }}</h4>
-      <h4><strong>Correo: </strong>{{ nuevoUsuario.correo }}</h4>
-      <h4><strong>Cantidad de personas: </strong> {{ nuevoUsuario.cantidadpersonas }}</h4>
-      <h4><strong>Fecha y hora: </strong>{{ nuevoUsuario.fechayhora }} </h4>
+      <h4><strong>Rut: </strong>{{ usuario.rut }}</h4>
+      <h4><strong>Correo: </strong>{{ usuario.correo }}</h4>
+      <h4><strong>Cantidad de personas: </strong> {{ usuario.cantidadpersonas }}</h4>
+      <h4><strong>Fecha y hora: </strong> nada x ahora </h4>
     </ion-text>
   </div>
 

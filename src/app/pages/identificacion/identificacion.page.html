@@ -8,7 +8,7 @@
 <ion-content class="ion-padding">
   <ion-content class="custom-content">
     <div class="content-container">
-      <form class="ion-padding" #identificacionForm="ngForm" (ngSubmit)="onSubmit()">
+      <form class="ion-padding" #identificacionForm="ngForm" (ngSubmit)="onSumbit()">
         <ion-text class="ion-text-center" color="warning">
           <h1>Formulario</h1>
         </ion-text>
@@ -17,7 +17,7 @@
           <ion-icon name="person-outline" slot="start"></ion-icon>
           <ion-input label="Nombre" labelPlacement="floating" required 
           minlength="3" type="text" name="nombre"
-            [(ngModel)]="nuevoUsuario.nombre" #nombre="ngModel" class="rounded-input">
+            [(ngModel)]="usuario.nombre" #nombre="ngModel" class="rounded-input">
           </ion-input>
         </ion-item>
         
@@ -26,7 +26,7 @@
         <ion-item lines="full" class="ion-margin-top">
           <ion-icon name="person-outline" slot="start"></ion-icon>
           <ion-input label="Apellido" labelPlacement="floating" required type="text" name="apellido"
-            [(ngModel)]="nuevoUsuario.apellido" class="rounded-input">
+            [(ngModel)]="usuario.apellido" class="rounded-input">
           </ion-input>
         </ion-item>
 
@@ -34,7 +34,7 @@
         <ion-item lines="full" class="ion-margin-top">
           <ion-icon name="body-outline" slot="start"></ion-icon>
           <ion-input label="Rut" labelPlacement="floating" placeholder="12345678-9" required type="text" name="rut"
-            [(ngModel)]="nuevoUsuario.rut" maxlength="10" class="rounded-input">
+            [(ngModel)]="usuario.rut" maxlength="10" class="rounded-input">
           </ion-input>
         </ion-item>
 
@@ -42,7 +42,7 @@
         <ion-item lines="full" class="ion-margin-top">
           <ion-icon name="mail-outline" slot="start"></ion-icon>
           <ion-input label="Correo" labelPlacement="floating" required type="email" name="correo"
-            [(ngModel)]="nuevoUsuario.correo" class="rounded-input">
+            [(ngModel)]="usuario.correo" class="rounded-input">
           </ion-input>
         </ion-item>
 
@@ -57,7 +57,7 @@
             </ion-button>
 
             <!-- Campo numérico -->
-            <ion-input type="number" min="1" [(ngModel)]="nuevoUsuario.cantidadpersonas" name="cantidadpersonas" required class="number-input">
+            <ion-input type="number" min="1" [(ngModel)]="usuario.cantidadpersonas" name="cantidadpersonas" required class="number-input">
             </ion-input>
 
             <!-- Botón de Incrementar -->
@@ -81,7 +81,7 @@
 
         <!-- Botón de confirmación -->
         <ion-button expand="block" shape="round" color="warning" type="submit" [disabled]="identificacionForm.invalid"
-          class="ion-margin-top" (click)="onSubmit()">
+          class="ion-margin-top" (click)="onSumbit()">
           Confirmar identificación
         </ion-button>
       </form>

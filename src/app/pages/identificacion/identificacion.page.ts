@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { FormBuilder, FormsModule, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonicStorageModule } from '@ionic/storage-angular';
-
-
+import { Usuario } from 'src/app/interfaces/usuario';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 
 @Component({
@@ -15,55 +14,50 @@ import { IonicStorageModule } from '@ionic/storage-angular';
   imports: [FormsModule, IonicModule]
 })
 export class IdentificacionPage implements OnInit {
+  cantidad: number = 1;
 
-  form: any;
+  usuario: Usuario = {
+    nombre: '',
+    apellido: '',
+    rut: '',
+    clave: '',
+    correo: '',
+    numeromesa: 0,
+    cantidadpersonas: 0,
+  }
+  
+  
+
+  constructor(private router: Router, private servicio: UsuariosService) { }
 
   ngOnInit() {
   }
 
-
-  cantidad: number = 1;
-
-  nuevoUsuario = {
-    nombre: '',
-    apellido: '',
-    rut: '',
-    correo: '',
-    numeromesa: 0,
-    cantidadpersonas: 0,
-    fechayhora: Date,
+  onSumbit() {
+    let datos = this.servicio.set(this.usuario.rut, this.usuario);
+    console.log("LEYENDO");
+    console.log(datos);
+    if (datos !== undefined) {
+      datos.then(value => {
+        console.log(value);
+        if (value == null) {
+          this.guardar();
+        }
+      });
+    }
   }
 
-  eventoFecha: string = '';
-
-
-  constructor(private router: Router, private fb: FormBuilder) {
-
-    this.form = this.fb.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      rut: ['', Validators.required],
-      correo: ['', [Validators.required, Validators.email]],
-      numeromesa: ['', Validators.required],
-      cantidadpersonas: ['', Validators.required],
-
-      //fechayhora: ['', Validators.required]
-    });
+  async saveData() {
+    await this.servicio.set(this.usuario.rut, this.usuario);
+    console.log('Datos guardados');
+    console.log(this.servicio);
   }
 
 
-
-  onSubmit() {
-    if (this.nuevoUsuario.nombre && this.nuevoUsuario.apellido && this.nuevoUsuario.correo && this.nuevoUsuario.rut) {
-
-      IonicStorageModule.setItem('reserva', JSON.stringify(this.nuevoUsuario));
-      this.router.navigate(['/mesa-check']); 
-    }else
-
-      this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-
-    });
+  guardar() {
+    console.log("Guardado!!!");
+    this.servicio.set(this.usuario.rut, this.usuario);
+    this.router.navigate(['/mesa-check']);
   }
 
   toHome() {
@@ -71,12 +65,12 @@ export class IdentificacionPage implements OnInit {
   }
 
   increment() {
-    this.nuevoUsuario.cantidadpersonas++;
+    this.usuario.cantidadpersonas++;
   }
 
   decrement() {
-    if (this.nuevoUsuario.cantidadpersonas > 1) {
-      this.nuevoUsuario.cantidadpersonas--;
+    if (this.usuario.cantidadpersonas > 1) {
+      this.usuario.cantidadpersonas--;
     }
   }
 }
