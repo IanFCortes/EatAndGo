@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule, } from '@angular/forms';
-import { Usuario } from 'src/app/interfaces/usuario';
-import { UsuariosService } from 'src/app/services/usuarios.service';
+import { Storage } from '@ionic/storage-angular';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-mesa-check',
@@ -17,31 +16,36 @@ export class MesaCheckPage implements OnInit {
 
   numeroMesa: number = 1;
 
-  usuario: Usuario = {
-    nombre: '',
-    apellido: '',
-    correo: '',
-    clave: '',
-    rut: '',
-    cantidadpersonas: 0,
-    numeromesa: 0,
-  }
+  usuario: any = null;
+
   constructor(
-    private router: Router, private servicio: UsuariosService
+    private navCtrl: NavController,private storage: Storage
   ) { }
 
    async ngOnInit() {
-    const user = await this.servicio.get('usuario');
-    console.log('Usuario:', user);
+    const rut = "12345678-9"; // 🔹 Asegúrate de usar el RUT correcto
+    this.usuario = await this.storage.get(rut);
+
+    if (this.usuario && this.usuario.fechayhora) {
+      // Formatea la fecha en un formato legible
+      this.usuario.fechayhora = new Date(this.usuario.fechayhora).toLocaleString();
+    }
+
+
+    if (!this.usuario) {
+      console.error("❌ No se encontraron datos en el Storage.");
+    } else {
+      console.log("✅ Datos recuperados:", this.usuario);
+    }
   }
 
 
   confirmarMesa() {
-    this.router.navigate(['/menu']);
+    this.navCtrl.navigateForward(['/menu']);
   }
 
   paginaAnterior() {
-    this.router.navigate(['/..']);
+    this.navCtrl.back();
   }
 
   onSubmit() {

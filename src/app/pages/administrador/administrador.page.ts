@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-administrador',
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AdministradorPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
   }
@@ -25,7 +26,7 @@ export class AdministradorPage implements OnInit {
   }
 
   paginaAnterior() {
-    this.router.navigate(['/..']);
+    this.navCtrl.back();
   }
 
 }

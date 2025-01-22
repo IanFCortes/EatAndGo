@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormGroup } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-bienvenida',
@@ -12,21 +11,21 @@ export class BienvenidaPage implements OnInit {
 
   
 
-  constructor(private router: Router) { }
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
   }
 
   toMenu() {
-    this.router.navigate(['/menu'])
+    this.navCtrl.navigateForward(['/menu']);
   }
 
   toIdentificacion() {
-    this.router.navigate(['/identificacion'])
+    this.navCtrl.navigateForward(['/identificacion']);
   }
   
   toAdmin() {
-    this.router.navigate(['/administrador'])
+    this.navCtrl.navigateForward(['/administrador']);
   }
 
   comprobarUser () {

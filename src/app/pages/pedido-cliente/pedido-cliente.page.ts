@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -11,14 +11,14 @@ import { AlertController } from '@ionic/angular';
 export class PedidoClientePage implements OnInit {
 
   constructor(
-    private router: Router,
+    private navCtrl: NavController,
     private alertController: AlertController // Inyectamos AlertController aquí
   ) {}
 
   ngOnInit() {}
 
   volverMenu() {
-    this.router.navigate(['/menu']);
+    this.navCtrl.navigateForward(['/menu']);
   }
 
   async mostrarAlerta() {
@@ -30,6 +30,6 @@ export class PedidoClientePage implements OnInit {
 
     await alert.present();
     
-    this.router.navigate(['/resumen-pedido-cliente']);
+    this.navCtrl.navigateForward(['/resumen-pedido-cliente']);
   }
 }

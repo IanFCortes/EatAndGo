@@ -8,7 +8,7 @@
 <ion-content class="ion-padding">
   <ion-content class="custom-content">
     <div class="content-container">
-      <form class="ion-padding" #identificacionForm="ngForm" (ngSubmit)="onSumbit()">
+      <form class="ion-padding" #identificacionForm="ngForm" (ngSubmit)="onSubmit()">
         <ion-text class="ion-text-center" color="warning">
           <h1>Formulario</h1>
         </ion-text>
@@ -68,20 +68,20 @@
         </ion-item>
         <br>  
         <!-- Fecha y Hora del Evento -->
-         <!-- <div class="ion-padding">
+         <div class="ion-padding">
          <ion-item disabled >
           <ion-datetime-button datetime="datetime"></ion-datetime-button>
           <ion-modal [keepContentsMounted]="true" >
-            <ng-template name="fechayhora" [(ngModel)]="nuevoUsuario.fechayhora">
+            <ng-template name="fechayhora" [(ngModel)]="usuario.fechayhora">
               <ion-datetime id="datetime"></ion-datetime>
             </ng-template>
           </ion-modal>
          </ion-item>
-        </div> -->
+        </div>
 
         <!-- Botón de confirmación -->
         <ion-button expand="block" shape="round" color="warning" type="submit" [disabled]="identificacionForm.invalid"
-          class="ion-margin-top" (click)="onSumbit()">
+          class="ion-margin-top" (click)="onSubmit()">
           Confirmar identificación
         </ion-button>
       </form>

@@ -19,7 +19,7 @@
       <ion-col size="1"></ion-col>
       <ion-col size="6">
         <ion-text class="ion-padding">Ocupante</ion-text>
-        <ion-input type="text" class="ion-text-center bordered-item" [readonly]="true" [value]="usuario.nombre">
+        <ion-input type="text" class="ion-text-center bordered-item" [readonly]="true" [value]="usuario.nombre + ' ' + usuario.apellido">
         </ion-input>
       </ion-col>
     </ion-row>

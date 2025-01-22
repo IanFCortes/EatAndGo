@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -11,7 +11,7 @@ import { AlertController } from '@ionic/angular';
 export class ResumenPedidoClientePage implements OnInit {
 
  constructor(
-     private router: Router,
+     private navCtrl: NavController,
      private alertController: AlertController // Inyectamos AlertController aquí
    ) {}
 
@@ -27,6 +27,6 @@ export class ResumenPedidoClientePage implements OnInit {
 
     await alert.present();
     
-    this.router.navigate(['/historial-pedidos-cliente']);
+    this.navCtrl.navigateForward(['/historial-pedidos-cliente']);
   }
 }

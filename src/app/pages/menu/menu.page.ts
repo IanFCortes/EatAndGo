@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -11,22 +11,22 @@ import { Router } from '@angular/router';
 })
 export class MenuPage implements OnInit {
 
-  constructor(private router: Router) {}
+  constructor(private navCtrl: NavController) {}
 
   ngOnInit() {
   }
 
   confirmarPedido () {
     console.log('Pedido confirmado');
-    this.router.navigate(['/resumen-pedido-cliente']);
+    this.navCtrl.navigateForward(['/resumen-pedido-cliente']);
   }
 
   paginaAnterior() {
-    this.router.navigate(['/..']);
+    this.navCtrl.back();
   }
 
   verPedido() {
-    this.router.navigate(['/pedido-cliente']);
+    this.navCtrl.navigateForward(['/pedido-cliente']);
   }
 
 }

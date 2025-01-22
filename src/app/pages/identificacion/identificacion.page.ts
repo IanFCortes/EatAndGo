@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -20,31 +20,39 @@ export class IdentificacionPage implements OnInit {
     nombre: '',
     apellido: '',
     rut: '',
-    clave: '',
     correo: '',
     numeromesa: 0,
     cantidadpersonas: 0,
+    fechayhora: '',
   }
   
   
 
-  constructor(private router: Router, private servicio: UsuariosService) { }
+  constructor(private navCtrl: NavController, private servicio: UsuariosService) { }
 
   ngOnInit() {
   }
 
-  onSumbit() {
-    let datos = this.servicio.set(this.usuario.rut, this.usuario);
-    console.log("LEYENDO");
-    console.log(datos);
-    if (datos !== undefined) {
-      datos.then(value => {
-        console.log(value);
-        if (value == null) {
-          this.guardar();
-        }
-      });
+  async onSubmit() {
+    console.log("Guardando datos...");
+  
+    // Guarda los datos en el almacenamiento
+    await this.servicio.set(this.usuario.rut, this.usuario);
+  
+    console.log("Datos guardados. Ahora intentando leer...");
+  
+    // Espera la lectura de los datos
+    const datos = await this.servicio.get(this.usuario.rut);
+    
+    console.log("Datos recuperados:", datos);
+  
+    if (datos == null) {
+      console.error("❌ No se encontraron los datos guardados. Revisa la clave o si el almacenamiento está funcionando.");
+    } else {
+      console.log("✅ Datos encontrados:", datos);
     }
+
+    this.guardar();
   }
 
   async saveData() {
@@ -57,11 +65,11 @@ export class IdentificacionPage implements OnInit {
   guardar() {
     console.log("Guardado!!!");
     this.servicio.set(this.usuario.rut, this.usuario);
-    this.router.navigate(['/mesa-check']);
+    this.navCtrl.navigateForward(['/mesa-check']);
   }
 
   toHome() {
-    this.router.navigate(['/bienvenida'])
+    this.navCtrl.navigateForward(['/bienvenida'])
   }
 
   increment() {
