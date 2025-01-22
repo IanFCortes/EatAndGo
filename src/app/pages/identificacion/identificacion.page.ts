@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class IdentificacionPage implements OnInit {
   
   
 
-  constructor(private navCtrl: NavController, private servicio: UsuariosService) { }
+  constructor(private navCtrl: NavController, private servicio: UsuariosService,private storage: Storage) { }
 
   ngOnInit() {
   }
@@ -37,9 +38,8 @@ export class IdentificacionPage implements OnInit {
     console.log("Guardando datos...");
   
     // Guarda los datos en el almacenamiento
-    await this.servicio.set(this.usuario.rut, this.usuario);
-  
-    console.log("Datos guardados. Ahora intentando leer...");
+    await this.storage.set(this.usuario.rut, this.usuario);
+    console.log("Usuario guardado:", this.usuario);
   
     // Espera la lectura de los datos
     const datos = await this.servicio.get(this.usuario.rut);

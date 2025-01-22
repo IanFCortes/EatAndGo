@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, } from '@angular/forms';
 import { Storage } from '@ionic/storage-angular';
 import { NavController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mesa-check',
@@ -19,12 +20,21 @@ export class MesaCheckPage implements OnInit {
   usuario: any = null;
 
   constructor(
-    private navCtrl: NavController,private storage: Storage
+    private navCtrl: NavController,private storage: Storage, private route: ActivatedRoute
   ) { }
 
    async ngOnInit() {
-    const rut = "12345678-9"; // 🔹 Asegúrate de usar el RUT correcto
-    this.usuario = await this.storage.get(rut);
+    // Recupera el RUT desde queryParams si es necesario
+    const rut = this.route.snapshot.queryParamMap.get('rut');
+    console.log('RUT recibido:', rut);
+ 
+    // Recupera los datos del usuario desde Ionic Storage
+    if (rut) {
+      this.usuario = await this.storage.get(rut);
+      console.log('Usuario encontrado en Storage:', this.usuario);
+    } else {
+      console.error('No se encontró el RUT en los parámetros.');
+    }
 
     if (this.usuario && this.usuario.fechayhora) {
       // Formatea la fecha en un formato legible
