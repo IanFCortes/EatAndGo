@@ -4,7 +4,6 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content class="ion-padding" color="dark">
   <h1 class="ion-text-center">¡Bienvenido a Eat&Go!</h1>
   <div class="welcome-container ion-text-center">
@@ -27,10 +26,13 @@
     </p>
 
     <div class="ion-padding">
-      <ion-button expand="block" shape="round" color="warning" (click)="toMenu()">
+      <!-- El botón de "Login" se habilita solo si isRutValid es verdadero -->
+      <ion-button [disabled]="!isRutValid" expand="block" shape="round" color="warning" (click)="toMenu()">
         Login
       </ion-button>
-      <br><ion-button expand="block" shape="round" color="warning" (click)="toIdentificacion()">
+      <br>
+      <!-- El botón de "Registrate" se deshabilita si isRutRegistered es verdadero -->
+      <ion-button [disabled]="isRutRegistered" expand="block" shape="round" color="warning" (click)="toIdentificacion()">
         Registrate
       </ion-button>
       <br>

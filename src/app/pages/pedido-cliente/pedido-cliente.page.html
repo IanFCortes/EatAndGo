@@ -10,42 +10,43 @@
     <ion-row>
       <ion-col size="12">
         <ion-text color="dark">
-          <h1>Detalles de la mesa N° x</h1>
-          <div>
+          <h1>Detalles de la mesa N° {{ this.numeromesa }}</h1>
+          <div class="ion-padding" *ngIf="usuario; else sinUsuario">
             <ion-text color="dark">
-              <h4>Nombre del cliente </h4>
-              <h4>Rut del cliente </h4>
-              <h4>Correo del cliente </h4>
-              <h4>Cantidad de personas </h4>
-              <h4>Fecha y Hora de la reserva </h4>
+              <h4><strong>Rut: </strong>{{ usuario.rut }}</h4>
+              <h4><strong>Correo: </strong>{{ usuario.correo }}</h4>
+              <h4><strong>Cantidad de personas: </strong> {{ usuario.cantidadpersonas }}</h4>
+              <h4><strong>Fecha y hora: </strong> {{ usuario.fechayhora }}</h4>
             </ion-text>
           </div>
         </ion-text>
       </ion-col>
       <ion-col size="12">
         <ion-text color="dark">
-          <h1>Detalles del pedido </h1>
+          <h1>Detalles del pedido</h1>
         </ion-text>
         <!-- Lista de productos -->
         <ion-list>
-          <ion-item>
+          <ion-item *ngFor="let producto of productos">
             <ion-label>
-              <h2>Nombre </h2>
-              <p>Cantidad </p>
-              <p>Precio </p>
+              <h2>{{ producto.nombre }}</h2>
+              <p>Cantidad: {{ producto.cantidad }}</p>
+              <p>Precio: ${{ producto.precio }}</p>
             </ion-label>
-            <ion-badge slot="end" color="warning">Total: $$$$</ion-badge>
+            <ion-badge slot="end" color="warning">Total: ${{ producto.precio * producto.cantidad }}</ion-badge>
           </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>
   
- 
-
+  <ng-template #sinUsuario>
+    <div>No se ha encontrado el usuario.</div>
+  </ng-template>
+  
   <!-- Total acumulado -->
   <div class="total-container">
-    <h3>Total del pedido: $$$$$$</h3>
+    <h3>Total del pedido: ${{ totalPedido }}</h3>
   </div>
 
   <!-- Botón para actualizar -->
@@ -53,3 +54,4 @@
     Confirmar Pedido
   </ion-button>
 </ion-content>
+  

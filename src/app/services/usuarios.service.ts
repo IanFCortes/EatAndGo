@@ -76,4 +76,11 @@ export class UsuariosService {
   public get(key: string) {
     return this.storage.get(key);
   }
+
+  async getUsuarioPorRut(rut: string): Promise<Usuario | null> {
+    const usuarios = await this.getUsuarios();
+    const usuario = usuarios.find(u => u.rut === rut);
+    return usuario || null; // Retorna el usuario si existe, o null si no
+  }
+  
 }

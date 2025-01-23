@@ -21,12 +21,14 @@ export class MenuPage implements OnInit {
     this.navCtrl.navigateForward(['/resumen-pedido-cliente']);
   }
 
-  paginaAnterior() {
-    this.navCtrl.back();
+  toHome() {
+    this.navCtrl.navigateForward(['/bienvenida']);
   }
 
   verPedido() {
-    this.navCtrl.navigateForward(['/pedido-cliente']);
+    this.navCtrl.navigateForward(['/pedido-cliente'], {
+      queryParams: { rut: '11111111-1' }
+    });
   }
 
 }
