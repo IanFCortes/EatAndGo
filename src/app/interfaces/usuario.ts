@@ -3,7 +3,7 @@ export interface Usuario {
     apellido: string,
     correo: string,
     rut: string,
-    numeromesa: number,
     cantidadpersonas: number,
     fechayhora: string,
+    esAdmin: boolean,
 }

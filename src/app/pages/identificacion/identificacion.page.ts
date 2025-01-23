@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { IonDatetime, IonicModule } from '@ionic/angular';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { flatMap } from 'rxjs';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Storage } from '@ionic/storage-angular';
   templateUrl: './identificacion.page.html',
   styleUrls: ['./identificacion.page.scss'],
   standalone: true,
-  imports: [FormsModule, IonicModule]
+  imports: [FormsModule, IonicModule, ReactiveFormsModule]
 })
 export class IdentificacionPage implements OnInit {
   cantidad: number = 1;
@@ -22,9 +23,9 @@ export class IdentificacionPage implements OnInit {
     apellido: '',
     rut: '',
     correo: '',
-    numeromesa: 0,
     cantidadpersonas: 0,
     fechayhora: '',
+    esAdmin: false,
   }
   
   
@@ -34,12 +35,9 @@ export class IdentificacionPage implements OnInit {
   ngOnInit() {
   }
 
+  
   async onSubmit() {
     console.log("Guardando datos...");
-  
-    // Guarda los datos en el almacenamiento
-    await this.storage.set(this.usuario.rut, this.usuario);
-    console.log("Usuario guardado:", this.usuario);
   
     // Espera la lectura de los datos
     const datos = await this.servicio.get(this.usuario.rut);
@@ -47,7 +45,7 @@ export class IdentificacionPage implements OnInit {
     console.log("Datos recuperados:", datos);
   
     if (datos == null) {
-      console.error("❌ No se encontraron los datos guardados. Revisa la clave o si el almacenamiento está funcionando.");
+      console.error("❌ No se encontraron los datos guardados.");
     } else {
       console.log("✅ Datos encontrados:", datos);
     }
@@ -65,7 +63,11 @@ export class IdentificacionPage implements OnInit {
   guardar() {
     console.log("Guardado!!!");
     this.servicio.set(this.usuario.rut, this.usuario);
-    this.navCtrl.navigateForward(['/mesa-check']);
+    this.navCtrl.navigateForward(['/mesa-check'], {
+      queryParams: {
+        rut: this.usuario.rut // Asegúrate de pasar el RUT correctamente
+      }
+    });
   }
 
   toHome() {
@@ -81,4 +83,5 @@ export class IdentificacionPage implements OnInit {
       this.usuario.cantidadpersonas--;
     }
   }
+  
 }

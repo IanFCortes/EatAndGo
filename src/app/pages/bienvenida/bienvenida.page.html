@@ -11,9 +11,20 @@
     <br>
     <br>
     <h1>
-      <ion-input type="text" placeholder="Rut">Ingresa tu Rut</ion-input>
-      <ion-input type="text" placeholder="Correo">Ingresa tu correo</ion-input>
+      <form (ngSubmit)="comprobarAdmin()">
+        <label for="rut">Verifica tu rut</label>
+        <input type="text" id="rut" [(ngModel)]="rut" name="rut" required maxlength="10"
+          pattern="^[0-9]{7,8}-[0-9kK]{1}$" placeholder="Ingrese su RUT" />
+        <ion-button type="submit" expand="block" fill="solid" shape="round">
+          Verificar
+        </ion-button>
+      </form>
     </h1>
+
+    <p *ngIf="isAdmin !== null">
+      <span *ngIf="isAdmin">El RUT corresponde a un administrador.</span>
+      <span *ngIf="!isAdmin">El RUT no corresponde a un administrador.</span>
+    </p>
 
     <div class="ion-padding">
       <ion-button expand="block" shape="round" color="warning" (click)="toMenu()">
@@ -23,7 +34,7 @@
         Registrate
       </ion-button>
       <br>
-      <ion-button expand="block" color="danger" shape="round" (click)="toAdmin()">
+      <ion-button [disabled]="!isAdmin" expand="block" fill="solid" shape="round" (click)="toAdmin()">
         Administrador
       </ion-button>
     </div>
