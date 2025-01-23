@@ -9,14 +9,14 @@
     <ion-row>
       <ion-col size="12">
         <ion-text color="dark">
-          <h1>Detalles de la mesa N° x</h1>
-          <div>
+          <h1>Detalles de la mesa N° {{ this.numeromesa }}</h1>
+          <div class="ion-padding" *ngIf="this.usuario;">
             <ion-text color="dark">
-              <h4>Nombre del cliente </h4>
-              <h4>Rut del cliente </h4>
-              <h4>Correo del cliente </h4>
-              <h4>Cantidad de personas </h4>
-              <h4>Fecha y Hora de la reserva </h4>
+              <h4><strong>Nombre: </strong>{{ this.usuario.nombre + ' ' +  this.usuario.apellido }}</h4>
+              <h4><strong>Rut: </strong>{{ this.usuario.rut }}</h4>
+              <h4><strong>Correo: </strong>{{ this.usuario.correo }}</h4>
+              <h4><strong>Cantidad de personas: </strong> {{ this.usuario.cantidadpersonas }}</h4>
+              <h4><strong>Fecha y hora: </strong> {{ this.usuario.fechayhora }}</h4>
             </ion-text>
           </div>
         </ion-text>

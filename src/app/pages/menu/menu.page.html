@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-icon class="ion-padding" name="arrow-back-outline" slot="start" (click)=toHome()></ion-icon>
     <ion-title color="warning" class="ion-text-center">Menú</ion-title>
-    <ion-icon class="ion-padding" slot="end" name="cart" (click)="verPedido()"></ion-icon>
+    <ion-icon class="ion-padding" slot="end" name="cart" (click)="verPedido(rutb)"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
@@ -164,7 +164,7 @@
       </div>
     </ion-accordion>
   </ion-accordion-group>
-  <ion-button expand="block" shape="round" color="warning" type="submit" class="ion-margin-top" (click)="verPedido()">
+  <ion-button expand="block" shape="round" color="warning" type="submit" class="ion-margin-top" (click)="verPedido(rutb)">
     Ver mi pedido
   </ion-button>
 </ion-content>

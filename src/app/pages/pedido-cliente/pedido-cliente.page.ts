@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class PedidoClientePage implements OnInit {
 
   usuario: any = null;
+  
   productos: any[] = [];
   totalPedido: number = 0;
   numeromesa: number = 1;
@@ -31,18 +32,6 @@ export class PedidoClientePage implements OnInit {
       const rut = this.route.snapshot.queryParamMap.get('rut');
       console.log('🔹 RUT recibido:', rut);
 
-
-      const usuario = await this.storage.get('usuario');
-
-
-      if (usuario) {
-        this.usuario = usuario;
-        console.log('Usuario recuperado:', this.usuario);
-      } else {
-        console.error('No se encontraron datos de usuario en el almacenamiento');
-      }
-
-      
       if (!rut) {
         console.error('❌ No se encontró el RUT en los parámetros.');
         return;
@@ -55,16 +44,10 @@ export class PedidoClientePage implements OnInit {
         return;
       }
 
-      if (!this.usuario) {
-        console.error('❌ Los datos del usuario no están disponibles.');
-        return;
-      }
-
       console.log('✅ Usuario encontrado en Storage:', datosUsuario);
       this.usuario = datosUsuario;
 
-      // ✅ Recupera el número de mesa dinámicamente si está almacenado
-      this.usuario.numeromesa = this.usuario.numeromesa || 1;
+
       // ✅ Formatea la fecha solo si existe y es válida
       if (this.usuario.fechayhora) {
         const fecha = new Date(this.usuario.fechayhora);
@@ -89,6 +72,8 @@ export class PedidoClientePage implements OnInit {
 
     await alert.present();
 
-    this.navCtrl.navigateForward(['/resumen-pedido-cliente']);
+    this.navCtrl.navigateForward(['/resumen-pedido-cliente'] ,
+     {queryParams: { rut: "11111111-1" }});
+    
   }
 }

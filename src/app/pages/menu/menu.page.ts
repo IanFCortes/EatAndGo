@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
+import { Usuario } from '../../interfaces/usuario';
+import { Storage } from '@ionic/storage-angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -11,12 +14,29 @@ import { NavController } from '@ionic/angular';
 })
 export class MenuPage implements OnInit {
 
-  constructor(private navCtrl: NavController) {}
+  usuario: any = null;
+  rutb: any;
+  constructor(private navCtrl: NavController, private storage: Storage, private route: ActivatedRoute) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.storage.create();
+
+    try {
+      const rut = this.route.snapshot.queryParamMap.get('rut');
+      console.log('🔹 RUT recibido:', rut);
+
+      if (!rut) {
+        console.error('❌ No se encontró el RUT en los parámetros.');
+        return;
+      }
+
+      const datosUsuario = await this.storage.get(rut);
+    }
+    catch (error) {
+      console.error('❌ Error al recuperar datos:', error);
+    }
   }
-
-  confirmarPedido () {
+  confirmarPedido() {
     console.log('Pedido confirmado');
     this.navCtrl.navigateForward(['/resumen-pedido-cliente']);
   }
@@ -25,10 +45,9 @@ export class MenuPage implements OnInit {
     this.navCtrl.navigateForward(['/bienvenida']);
   }
 
-  verPedido() {
+  verPedido(rutb:string) {
     this.navCtrl.navigateForward(['/pedido-cliente'], {
-      queryParams: { rut: '11111111-1' }
-    });
+      queryParams: { rut: rutb }});
   }
 
 }

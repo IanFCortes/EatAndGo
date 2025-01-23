@@ -5,7 +5,6 @@ import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
-import { flatMap } from 'rxjs';
 
 
 @Component({

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-resumen-pedido-cliente',
@@ -10,12 +12,48 @@ import { AlertController } from '@ionic/angular';
 })
 export class ResumenPedidoClientePage implements OnInit {
 
- constructor(
-     private navCtrl: NavController,
-     private alertController: AlertController // Inyectamos AlertController aquí
-   ) {}
+  usuario: any = null;
+  numeromesa: number = 1;
+  
+  constructor(
+    private navCtrl: NavController, 
+    private storage: Storage,
+    private route: ActivatedRoute,
+    private alertController: AlertController
+  ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.storage.create(); // 💡 IMPORTANTE: Inicializa Storage
+
+    try {
+      const rut = this.route.snapshot.queryParamMap.get('rut');
+      console.log('🔹 RUT recibido:', rut);
+
+      if (!rut) {
+        console.error('❌ No se encontró el RUT en los parámetros.');
+        return;
+      }
+
+      const datosUsuario = await this.storage.get(rut);
+
+      if (!datosUsuario) {
+        console.error('❌ No se encontraron datos en el Storage.');
+        return;
+      }
+
+      console.log('✅ Usuario encontrado en Storage:', datosUsuario);
+      this.usuario = datosUsuario;
+
+
+      // ✅ Formatea la fecha solo si existe y es válida
+      if (this.usuario.fechayhora) {
+        const fecha = new Date(this.usuario.fechayhora);
+        this.usuario.fechayhora = isNaN(fecha.getTime()) ? 'No disponible' : fecha.toLocaleString();
+      }
+
+    } catch (error) {
+      console.error('❌ Error al recuperar datos:', error);
+    }
   }
 
   async pedidoPagado() {
@@ -26,7 +64,7 @@ export class ResumenPedidoClientePage implements OnInit {
     });
 
     await alert.present();
-    
+
     this.navCtrl.navigateForward(['/historial-pedidos-cliente']);
   }
 }

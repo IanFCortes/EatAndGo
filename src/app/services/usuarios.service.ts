@@ -6,6 +6,7 @@ import { Usuario } from 'src/app/interfaces/usuario';
   providedIn: 'root'
 })
 export class UsuariosService {
+  private _storage: Storage | null = null;
   private storageInitialized = false;
 
   // Lista estática de RUTs de administradores
@@ -16,7 +17,9 @@ export class UsuariosService {
   }
 
   private async initStorage() {
-    await this.storage.create();
+
+    const storage = await this.storage.create();
+    this._storage = storage;
     this.storageInitialized = true;
   }
 
@@ -74,7 +77,8 @@ export class UsuariosService {
   }
 
   public get(key: string) {
-    return this.storage.get(key);
+    let data = this._storage?.get(key);
+    return data;
   }
 
   async getUsuarioPorRut(rut: string): Promise<Usuario | null> {
