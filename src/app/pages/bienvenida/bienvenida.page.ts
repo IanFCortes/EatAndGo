@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core'
+import { Router } from '@angular/router'
+import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth'
 
 @Component({
   selector: 'app-bienvenida',
@@ -7,22 +8,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./bienvenida.page.scss'],
   standalone: false
 })
-export class BienvenidaPage implements OnInit {
+export class BienvenidaPage {
+  email: string = ''
+  clave: string = ''
+  errorMessage: string = ''
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private auth: Auth) {}
 
-  ngOnInit() {
-  }
+  async login() {
+    if (!this.email || !this.clave) {
+      this.errorMessage = 'Por favor, completa todos los campos'
+      return
+    }
 
-  toMenu() {
-    this.router.navigate(['/menu'])
+    try {
+      const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.clave)
+      console.log('Usuario autenticado:', userCredential.user.uid)
+      
+      this.router.navigate(['/menu'])
+    } catch (error: any) {
+      console.error('Error en inicio de sesión:', error)
+      this.errorMessage = 'Correo o contraseña incorrectos'
+    }
   }
 
   toIdentificacion() {
     this.router.navigate(['/identificacion'])
-  }
-  
-  toAdmin() {
-    this.router.navigate(['/administrador'])
   }
 }

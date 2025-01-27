@@ -4,28 +4,34 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content class="ion-padding" color="dark">
   <h1 class="ion-text-center">¡Bienvenido a Eat&Go!</h1>
   <div class="welcome-container ion-text-center">
     <br>
     <br>
     <br>
-    <h1>
-      <ion-input type="text" placeholder="Rut">Ingresa tu Rut</ion-input>
-      <ion-input type="text" placeholder="Correo">Ingresa tu correo</ion-input>
-    </h1>
+
+    <ion-item>
+      <ion-icon name="mail-outline" slot="start"></ion-icon>
+      <ion-input type="email" placeholder="Correo" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+      <ion-input type="password" placeholder="Contraseña" [(ngModel)]="clave"></ion-input>
+    </ion-item>
+
+    <ion-text color="danger" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </ion-text>
 
     <div class="ion-padding">
-      <ion-button expand="block" shape="round" color="warning" (click)="toMenu()">
-        Login
-      </ion-button>
-      <br><ion-button expand="block" shape="round" color="warning" (click)="toIdentificacion()">
-        Registrate
+      <ion-button expand="block" shape="round" color="warning" (click)="login()">
+        Iniciar Sesión
       </ion-button>
       <br>
-      <ion-button expand="block" color="danger" shape="round" (click)="toAdmin()">
-        Administrador
+      <ion-button expand="block" shape="round" color="warning" (click)="toIdentificacion()">
+        Registrarse
       </ion-button>
     </div>
   </div>
