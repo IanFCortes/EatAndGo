@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { Producto } from '../../services/producto.service'
+import { getAuth, signOut } from '@angular/fire/auth'
 
 @Component({
   selector: 'app-resumen-pedido-cliente',
@@ -9,24 +10,30 @@ import { AlertController } from '@ionic/angular';
   standalone: false
 })
 export class ResumenPedidoClientePage implements OnInit {
+  compra: { productos: { producto: Producto; cantidad: number }[]; total: number } | null = null
 
- constructor(
-     private router: Router,
-     private alertController: AlertController // Inyectamos AlertController aquí
-   ) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
+    if (history.state && history.state.compra) {
+      this.compra = history.state.compra
+    }
   }
 
-  async pedidoPagado() {
-    const alert = await this.alertController.create({
-      header: 'Has Pagado tu Pedido',
-      subHeader: '¡Gracias por tu compra!',
-      buttons: ['OK'],
-    });
+  volverMenu() {
+    this.router.navigate(['/menu'])
+  }
 
-    await alert.present();
-    
-    this.router.navigate(['/historial-pedidos-cliente']);
+  verHistorial() {
+    this.router.navigate(['/historial-pedidos-cliente'])
+  }
+
+  logout() {
+    const auth = getAuth()
+    signOut(auth).then(() => {
+      this.router.navigate(['/bienvenida'])
+    }).catch((error) => {
+      console.error('Error al cerrar sesión', error)
+    })
   }
 }
