@@ -1,43 +1,56 @@
 <ion-header>
   <ion-toolbar>
-    <ion-icon class="ion-padding" name="arrow-back-outline" slot="start" (click)=paginaAnterior();></ion-icon>
+    <ion-icon class="ion-padding" name="arrow-back-outline" slot="start" (click)="paginaAnterior()"></ion-icon>
     <ion-title color="warning" class="ion-text-center">Confirmación de Mesa</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding" fullscreen>
-  <ion-grid fixed class="bordered-item">
-    <ion-row>
-      <ion-col size="4">
-        <ion-text class="ion-padding agrandado">Mesa N°</ion-text>
-        <ion-item lines="none" class="ion-text-center bordered-item">
-          <ion-label position="stacked" class="ion-text-center"></ion-label>
-          <ion-input type="number" class="ion-text-center" [readonly]="true" [value]="numeroMesa">
+  <form *ngIf="mesaCheckForm" [formGroup]="mesaCheckForm" (ngSubmit)="confirmarMesa()">
+    <ion-grid fixed class="bordered-item">
+      <ion-row>
+        <ion-col size="4">
+          <ion-text class="ion-padding agrandado">Mesa N°</ion-text>
+          <ion-item lines="none" class="ion-text-center bordered-item">
+            <ion-input type="number" class="ion-text-center" [readonly]="true" formControlName="mesa">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          Datos del Ocupante
+          <ion-input type="text" class="ion-text-center bordered-item" formControlName="cliente" readonly>
           </ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="2"></ion-col>
-      <ion-col size="6">
-        Datos del Ocupante
-        <ion-input type="text" class="ion-text-center bordered-item" [value]="'Esteban Quito'">
-        </ion-input>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-  <ion-text color="dark">
-    <h1>Detalles de la mesa</h1>
-  </ion-text>
-  <div>
-    <ion-text color="dark">
-      <h4>Rut del cliente: </h4>
-      <h4>Correo del cliente: </h4>
-      <h4>Cantidad de personas: </h4>
-      <h4>Fecha y Hora de la reserva: </h4>
-    </ion-text>
-  </div>
-  <ion-button expand="block" shape="round" color="warning" class="ion-padding" (click)=confirmarMesa()>
-    Confirmar mesa
-  </ion-button>
+    <ion-item>
+      <ion-icon name="body-outline" slot="start"></ion-icon>
+      <ion-label>Rut del Cliente</ion-label>
+      <ion-input type="text" formControlName="rut" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="people-outline" slot="start"></ion-icon>
+      <ion-label>Cantidad de Personas</ion-label>
+      <ion-input type="number" formControlName="cantidad"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="calendar-outline" slot="start"></ion-icon>
+      <ion-datetime
+        label="Fecha y Hora de la Reserva"
+        labelPlacement="floating"
+        color="warning"
+        formControlName="fechayhora"
+        required
+        presentation="date-time">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-button expand="block" shape="round" color="warning" class="ion-padding" type="submit"
+      [disabled]="mesaCheckForm.invalid">
+      Confirmar mesa
+    </ion-button>
+  </form>
 </ion-content>
-

@@ -1,64 +1,63 @@
-import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
-import { FormBuilder, FormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { ClienteService } from '../../services/cliente.service'
+import { Cliente } from '../../models/cliente.models'
+import { Timestamp } from 'firebase/firestore'
+import { IonicModule } from '@ionic/angular'
+import { FormsModule } from '@angular/forms'
+import { Storage } from '@ionic/storage-angular'
 
 @Component({
   selector: 'app-identificacion',
   templateUrl: './identificacion.page.html',
   styleUrls: ['./identificacion.page.scss'],
   standalone: true,
-  imports: [FormsModule, IonicModule]
+  imports: [IonicModule, FormsModule]
 })
 export class IdentificacionPage implements OnInit {
-
-  cliente = {
+  cliente: Cliente = {
     nombre: '',
     apellido: '',
     rutcliente: '',
     correo: '',
-    fechayhora: '',
+    cantidad: 1, // ✅ Asegurar que cantidad está definido
+    fechayhora: Timestamp.now()
   }
-  form: any;
 
-  ngOnInit() {
-    
+  constructor(private router: Router, private clienteService: ClienteService, private storage: Storage) {}
+
+  async ngOnInit() {
+    await this.storage.create()
   }
-  
-  
 
-
-
-  cantidad: number = 1; // Valor inicial
-
+  // ✅ Agregar las funciones que faltaban
   increment() {
-    this.cantidad++;
+    this.cliente.cantidad++
   }
-  
+
   decrement() {
-    if (this.cantidad > 1) {
-      this.cantidad--;
+    if (this.cliente.cantidad > 1) {
+      this.cliente.cantidad--
     }
   }
 
-  constructor(private router: Router,private fb: FormBuilder) {}
-
+  async onSubmit() {
+    if (this.cliente.nombre && this.cliente.apellido && this.cliente.correo) {
+      try {
+        await this.clienteService.addCliente(this.cliente)
   
-  onSubmit() {
-    if (this.cliente.nombre && this.cliente.apellido && this.cliente.correo && this.cliente.fechayhora) {
-      // Lógica adicional antes de la redirección
-      this.router.navigate(['/mesa-check']); // Cambia '/ruta-destino' por tu ruta deseada
-    }else
-    
-      this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      // otros controles...
-    });
+        await this.storage.set('clienteData', this.cliente)
+  
+        this.router.navigate(['/mesa-check'], { state: { rutcliente: this.cliente.rutcliente } })
+      } catch (error) {
+        console.error('Error al guardar cliente:', error)
+      }
+    } else {
+      console.error('Por favor completa todos los campos')
+    }
   }
 
   toHome() {
     this.router.navigate(['/bienvenida'])
   }
-
 }

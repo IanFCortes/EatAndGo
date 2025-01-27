@@ -1,84 +1,44 @@
 <ion-header>
   <ion-toolbar>
-    <ion-icon class="ion-padding" name="arrow-back-outline" slot="start" (click)=toHome()></ion-icon>
+    <ion-icon class="ion-padding" name="arrow-back-outline" slot="start" (click)="toHome()"></ion-icon>
     <ion-title color="warning" class="ion-text-center">IDENTIFICACION</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-content class="custom-content">
-    <div class="content-container">
-      <form class="ion-padding" #identificacionForm="ngForm" (ngSubmit)="onSubmit()">
-        <ion-text class="ion-text-center" color="warning">
-          <h1>Formulario</h1>
-        </ion-text>
-        <!-- Nombre -->
-        <ion-item lines="full">
-          <ion-icon name="person-outline" slot="start"></ion-icon>
-          <ion-input label="Nombre" labelPlacement="floating" required type="text" name="nombre"
-            [(ngModel)]="cliente.nombre" class="rounded-input">
-          </ion-input>
-        </ion-item>
+  <div class="content-container">
+    <form class="ion-padding" #identificacionForm="ngForm" (ngSubmit)="onSubmit()">
+      <ion-text class="ion-text-center" color="warning">
+        <h1>Formulario</h1>
+      </ion-text>
 
-        <!-- Apellido -->
-        <ion-item lines="full" class="ion-margin-top">
-          <ion-icon name="person-outline" slot="start"></ion-icon>
-          <ion-input label="Apellido" labelPlacement="floating" required type="text" name="apellido"
-            [(ngModel)]="cliente.apellido" class="rounded-input">
-          </ion-input>
-        </ion-item>
+      <ion-item>
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-input label="Nombre" labelPlacement="floating" required type="text" name="nombre"
+          [(ngModel)]="cliente.nombre"></ion-input>
+      </ion-item>
 
-        <!-- Rut -->
-        <ion-item lines="full" class="ion-margin-top">
-          <ion-icon name="body-outline" slot="start"></ion-icon>
-          <ion-input label="Rut" labelPlacement="floating" placeholder="12345678-9" required type="text" name="rut"
-            [(ngModel)]="cliente.rutcliente" class="rounded-input">
-          </ion-input>
-        </ion-item>
+      <ion-item>
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-input label="Apellido" labelPlacement="floating" required type="text" name="apellido"
+          [(ngModel)]="cliente.apellido"></ion-input>
+      </ion-item>
 
-        <!-- Correo -->
-        <ion-item lines="full" class="ion-margin-top">
-          <ion-icon name="mail-outline" slot="start"></ion-icon>
-          <ion-input label="Correo" labelPlacement="floating" required type="correo" name="correo"
-            [(ngModel)]="cliente.correo" class="rounded-input">
-          </ion-input>
-        </ion-item>
+      <ion-item>
+        <ion-icon name="body-outline" slot="start"></ion-icon>
+        <ion-input label="Rut" labelPlacement="floating" placeholder="12345678-9" required type="text" name="rutcliente"
+          [(ngModel)]="cliente.rutcliente"></ion-input>
+      </ion-item>
 
-        <!-- Cantida de personas -->
-        <ion-item lines="full" class="ion-margin-top">
-          <ion-label class="ion-text-center text-sized" position="stacked">Cantidad de personas</ion-label>
-          <div class="number-control">
-            <ion-icon class="big-icon" name="person-add-outline"></ion-icon>
-            <!-- Botón de Decrementar -->
-            <ion-button fill="outline" size="small" (click)="decrement()" color="warning" class="control-button">
-              <ion-icon name="remove-outline"></ion-icon>
-            </ion-button>
+      <ion-item>
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-input label="Correo" labelPlacement="floating" required type="email" name="correo"
+          [(ngModel)]="cliente.correo"></ion-input>
+      </ion-item>
 
-            <!-- Campo numérico -->
-            <ion-input type="number" min="1" [(ngModel)]="cantidad" name="cantidad" required class="number-input">
-            </ion-input>
-
-            <!-- Botón de Incrementar -->
-            <ion-button fill="outline" size="small" (click)="increment()" color="warning" class="control-button">
-              <ion-icon name="add-outline"></ion-icon>
-            </ion-button>
-          </div>
-        </ion-item>
-
-        <!-- Fecha y Hora del Evento -->
-        <ion-item lines="full" class="ion-margin-top">
-          <ion-icon name="calendar-outline" slot="start"></ion-icon>
-          <ion-datetime label="Fecha y Hora del Evento" labelPlacement="floating" color="warning" [(ngModel)]="cliente.fechayhora"
-            name="FechayHora" required>
-          </ion-datetime>
-        </ion-item>
-
-        <!-- Botón de confirmación -->
-        <ion-button expand="block" shape="round" color="warning" type="submit" [disabled]="identificacionForm.invalid"
-          class="ion-margin-top" (click)="onSubmit()">
-          Confirmar identificación
-        </ion-button>
-      </form>
-    </div>
-  </ion-content>
+      <ion-button expand="block" shape="round" color="warning" type="submit" [disabled]="identificacionForm.invalid">
+        Confirmar identificación
+      </ion-button>
+    </form>
+  </div>
 </ion-content>
