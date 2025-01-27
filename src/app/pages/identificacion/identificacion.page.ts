@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { ClienteService } from '../../services/cliente.service'
 import { Cliente } from '../../models/cliente.models'
-import { Timestamp } from 'firebase/firestore'
 import { IonicModule } from '@ionic/angular'
 import { FormsModule } from '@angular/forms'
 import { Storage } from '@ionic/storage-angular'
@@ -19,10 +18,10 @@ export class IdentificacionPage implements OnInit {
     nombre: '',
     apellido: '',
     rutcliente: '',
-    correo: '',
-    cantidad: 1, // ✅ Asegurar que cantidad está definido
-    fechayhora: Timestamp.now()
+    correo: ''
   }
+
+  clave: string = '' 
 
   constructor(private router: Router, private clienteService: ClienteService, private storage: Storage) {}
 
@@ -30,27 +29,19 @@ export class IdentificacionPage implements OnInit {
     await this.storage.create()
   }
 
-  // ✅ Agregar las funciones que faltaban
-  increment() {
-    this.cliente.cantidad++
-  }
-
-  decrement() {
-    if (this.cliente.cantidad > 1) {
-      this.cliente.cantidad--
-    }
-  }
-
   async onSubmit() {
-    if (this.cliente.nombre && this.cliente.apellido && this.cliente.correo) {
+    if (this.cliente.nombre && this.cliente.apellido && this.cliente.correo && this.clave) {
       try {
-        await this.clienteService.addCliente(this.cliente)
-  
+       
+        await this.clienteService.registerCliente(this.cliente, this.clave)
+
+       
         await this.storage.set('clienteData', this.cliente)
-  
-        this.router.navigate(['/mesa-check'], { state: { rutcliente: this.cliente.rutcliente } })
+
+      
+        this.router.navigate(['/mesa-check'])
       } catch (error) {
-        console.error('Error al guardar cliente:', error)
+        console.error('Error al registrar cliente:', error)
       }
     } else {
       console.error('Por favor completa todos los campos')

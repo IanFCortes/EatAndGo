@@ -17,9 +17,11 @@
           </ion-item>
         </ion-col>
         <ion-col size="6">
-          Datos del Ocupante
-          <ion-input type="text" class="ion-text-center bordered-item" formControlName="cliente" readonly>
-          </ion-input>
+          <ion-text class="ion-padding agrandado">Datos del Ocupante</ion-text>
+          <ion-item lines="none" class="ion-text-center bordered-item">
+            <ion-input type="text" class="ion-text-center" formControlName="cliente" readonly>
+            </ion-input>
+          </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -32,8 +34,8 @@
 
     <ion-item>
       <ion-icon name="people-outline" slot="start"></ion-icon>
-      <ion-label>Cantidad de Personas</ion-label>
-      <ion-input type="number" formControlName="cantidad"></ion-input>
+      <ion-label> Cantidad de Personas</ion-label>
+      <ion-input type="number" formControlName="cantidad" class="editable-input"></ion-input>
     </ion-item>
 
     <ion-item>

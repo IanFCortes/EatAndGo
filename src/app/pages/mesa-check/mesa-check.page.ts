@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular'
 import { Storage } from '@ionic/storage-angular'
 import { CommonModule } from '@angular/common'
 import { Timestamp } from 'firebase/firestore'
+import { Auth, onAuthStateChanged } from '@angular/fire/auth' 
 
 @Component({
   selector: 'app-mesa-check',
@@ -26,43 +27,53 @@ export class MesaCheckPage implements OnInit {
     private fb: FormBuilder,
     private clienteService: ClienteService,
     private reservaService: ReservaService,
-    private storage: Storage
+    private storage: Storage,
+    private auth: Auth
   ) {}
 
   async ngOnInit() {
     await this.storage.create()
 
-    let rutcliente = history.state.rutcliente || await this.storage.get('rutCliente')
-
-    // ✅ Inicializar el formulario ANTES de asignarle valores
+    
     this.mesaCheckForm = this.fb.group({
       mesa: [this.numeroMesa, Validators.required],
       cliente: ['', Validators.required],
       rut: ['', Validators.required],
-      correo: ['', [Validators.required, Validators.email]],
-      cantidad: [1, Validators.required],
+      cantidad: [1, [Validators.required, Validators.min(1)]],
       fechayhora: ['', Validators.required]
     })
 
-    if (rutcliente) {
-      this.clienteService.getCliente(rutcliente).then(cliente => {
-        if (cliente) {
-          this.cliente = cliente
+    
+    onAuthStateChanged(this.auth, async (user) => {
+      if (user) {
+        console.log('Usuario autenticado:', user.uid)
+        const clienteData = await this.clienteService.getCliente(user.uid)
+        if (clienteData) {
+          console.log('Cliente encontrado:', clienteData)
+          this.cliente = clienteData
           this.actualizarFormulario()
+        } else {
+          console.error('No se encontró el cliente en Firestore.')
         }
-      }).catch(error => console.error('Error obteniendo cliente:', error))
-    }
+      } else {
+        console.error('No hay usuario autenticado.')
+        this.router.navigate(['/identificacion'])
+      }
+    })
   }
 
   actualizarFormulario() {
-    if (!this.mesaCheckForm || !this.cliente) return
+    if (!this.mesaCheckForm || !this.cliente) {
+      console.error('No se pudo actualizar el formulario porque los datos del cliente son nulos.')
+      return
+    }
+
+    console.log('Actualizando formulario con:', this.cliente)
 
     this.mesaCheckForm.patchValue({
       mesa: this.numeroMesa,
       cliente: `${this.cliente.nombre} ${this.cliente.apellido}`,
-      rut: this.cliente.rutcliente,
-      correo: this.cliente.correo,
-      cantidad: this.cliente.cantidad
+      rut: this.cliente.rutcliente
     })
   }
 
@@ -72,7 +83,7 @@ export class MesaCheckPage implements OnInit {
         const reservaData = {
           rutcliente: this.cliente.rutcliente,
           numeroMesa: this.numeroMesa,
-          cantidad: this.mesaCheckForm.get('cantidad')?.value, // ✅ Ahora guarda la cantidad de personas
+          cantidad: this.mesaCheckForm.get('cantidad')?.value,
           fechayhora: Timestamp.fromDate(new Date(this.mesaCheckForm.get('fechayhora')?.value))
         }
 

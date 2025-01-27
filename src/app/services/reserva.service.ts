@@ -10,13 +10,18 @@ export class ReservaService {
 
   constructor(private firestore: Firestore) {}
 
-  // ✅ Guardar una nueva reserva con `cantidad`
   async addReserva(rutcliente: string, numeroMesa: number, cantidad: number, fechayhora: Timestamp): Promise<void> {
-    await addDoc(this.reservasCollection, {
-      rutcliente,
-      numeroMesa,
-      cantidad, // ✅ Se guarda la cantidad de personas
-      fechayhora
-    })
+    try {
+      await addDoc(this.reservasCollection, {
+        rutcliente,
+        numeroMesa,
+        cantidad,
+        fechayhora
+      })
+      console.log('Reserva guardada exitosamente')
+    } catch (error) {
+      console.error('Error al guardar la reserva:', error)
+      throw error
+    }
   }
 }
